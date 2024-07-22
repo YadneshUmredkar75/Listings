@@ -1,0 +1,42 @@
+<% layout('pages/boilerplate') %>
+<body>
+    <div class="row mt-5">
+        <div class="col-8">
+
+       
+   
+    <div class="card col-md-8 offset-3" >
+        <h3>Listing :</h3>
+        <img src="<%= listlist.image.url %>" class="card-img-top show-img" style="height: 18rem;" alt="listing_image">
+        <div class="card-body">
+          <p class="card-text">
+            <b><%= listlist.title %></b><br>
+            <%= listlist.description %> <br>
+            &#8377;<%= listlist.price ? listlist.price.toLocaleString("en-IN") : 'N/A' %><br>
+            <%=listlist.location %><br>
+            <%=listlist.country %>
+        </p>
+        </div>
+      </div>
+
+    <div class="row offset-3">
+        <div class="col-2">
+            <a href="/listing/<%= listlist._id %>/edit" class="btn btn-dark edit-btn">Edit </a>
+        </div>
+        
+    
+        <br><br><br>
+        <div class="col-2">
+            <form method="post" action="/listing/<%=listlist._id%>?_method=delete">
+                <button class="btn btn-dark">Delete </button>
+            </form>
+        </div>
+        
+    </div>
+
+   
+    
+</div>   
+</div>
+</body>
+
