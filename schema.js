@@ -9,4 +9,4 @@ module.exports.shema = Joi.object({
     country:Joi.string().required(),
     image:Joi.string().allow("",null),
 }).required()
-})
+});

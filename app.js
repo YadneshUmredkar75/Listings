@@ -114,6 +114,22 @@ app.delete("/listing/:id",async(req,res)=>{
 
 });
 
+app.post("/listing/:id/review", wrapAsync(async (req, res, next) => {
+    // const listlist = await Listing.findById(req.params.id);
+    const listlist = await Listing.findById(req.params.id).populate('reviews');
+
+    if (!listlist) throw new ExpressError(404, "Listing not found");
+  
+    let newReview = new Review(req.body.review);
+   listlist.reviews.push(newReview);
+    await newReview.save();
+    await listlist.save();
+  
+    console.log("Review sent");
+  
+    res.redirect(`/listing/${listlist._id}`);
+  }));
+
 
 app.all("*",(req,res,next)=>{
     next(new ExpressError(404,"page not found!"));
