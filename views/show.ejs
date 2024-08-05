@@ -41,11 +41,11 @@
                <div>
                    <label for="reating">Reating</label>
                    
-                   <input type="range" class="form-range"  type="range" min="1" max="5" name="reviews[reatings]" >
+                   <input type="range" class="form-range"  type="range" min="1" max="5" name="review[reatings]" >
                </div>
                <div>
                    <label for="comment">Comment</label>
-                  <textarea class="form-control form-label" name="reviews[comment]" cols="30" rows="3" required></textarea>
+                  <textarea class="form-control form-label" name="review[comment]" cols="30" rows="3" required></textarea>
                </div>
                <button class="btn btn-dark" >submit</button>
            </form>
@@ -54,17 +54,25 @@
    </div>
    <hr>
    <h3>All Reviews</h3>
-   <ul>
-    <% for(review of listlist.reviews) { %>
-      <li><%= review.comment %></li>
-      <li><%= review.reatings %></li> <!-- Ensure this matches the correct property name -->
-    <% } %>
-  </ul>
   
+</div>  
+<div class="revicard row " >
+    <% for(review of listlist.reviews) { %>
+    <div class="revicard col-5 ms-3 mb-3 ">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text"><%= review.comment %></p>
+      <p class="card-text"><%= review.reatings %></p>
+      
+      <form method="POST" action="/listings/<%= listlist._id %>/reviews/<%= review._id %>?_method=DELETE">
+        <button class="btn btn-dark">Delete</button>
+    </form>
+    
+    </div>
+    <% } %>
+  </div> 
     
   
     
 </div>   
 </div>
 </body>
-
